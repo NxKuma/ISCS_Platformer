@@ -8,8 +8,8 @@
 [node name="Main" type="Node2D"]
 
 [node name="Icon" type="Sprite2D" parent="."]
-position = Vector2(620, 740)
-scale = Vector2(11.3359, 3.28125)
+position = Vector2(587, 809.5)
+scale = Vector2(28.3281, 4.36719)
 texture = ExtResource("1_fdxyj")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
