@@ -19,9 +19,8 @@ func _physics_process(delta):
 	else:
 		jump_left = 2
 
-
 	# Handle jump.
-	if Input.is_action_just_pressed("Space") and is_on_floor():
+	if Input.is_action_just_pressed("Space") and (is_on_floor() or is_on_wall()):
 		velocity.y = jump_velocity
 		jump_left -= 1
 	elif Input.is_action_just_pressed("Space") and jump_left > 0:
@@ -32,19 +31,45 @@ func _physics_process(delta):
 		velocity.y *= jump_deccelerate
 	
 	#Handle Running
-	var speed:int = 0
-	if Input.is_action_pressed("Run"):
+	var speed:int
+	var speed_limit:int
+	if Input.is_action_pressed("Run") and is_on_floor():
 		speed = run_speed
+		speed_limit = 600
 	else:
 		speed = walk_speed
+		speed_limit = 300
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction = Input.get_axis("Left", "Right")
-	if direction:
-		velocity.x = move_toward(velocity.x, direction * speed, speed * accelerate)
-		#velocity.x = direction * speed
+	#Non-Preserved Momentum
+	#if direction:
+		#velocity.x = move_toward(velocity.x, direction * speed, speed * accelerate)
+		##velocity.x = direction * speed
+	#else:
+		#velocity.x = move_toward(velocity.x, 0, speed*deccelerate)
+#-----------------------------------------------------------------------------------------------
+	#Preserved Momentum
+	
+	if Input.is_action_pressed("Left"):
+		if velocity.x > -speed_limit:
+			velocity.x += direction * speed
+		else:
+			velocity.x = -speed_limit
+	elif Input.is_action_pressed("Right"):
+		if velocity.x < speed_limit:
+			velocity.x += direction * speed
+		else:
+			velocity.x = speed_limit
+	
+	
+	#if direction:
+		##velocity.x = move_toward(velocity.x, direction * speed, speed * accelerate)
+		#if velocity.x <= speed_limit and velocity.x >= -speed_limit:
+			#velocity.x += direction * speed 
 	else:
-		velocity.x = move_toward(velocity.x, 0, speed*deccelerate)
-
+		if is_on_floor():
+			velocity.x = move_toward(velocity.x, 0, speed*deccelerate)
+	print(velocity.x)
 	move_and_slide()
