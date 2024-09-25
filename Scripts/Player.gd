@@ -6,6 +6,7 @@ var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 @export var walk_speed: int = 350
 @export var run_speed: int = 500
 @export var jump_velocity: float = -600.0
+@export_range(0,1) var jump_deccelerate: float = 0.5
 @export_range(0,1) var deccelerate: float = 0.1
 @export_range(0,1) var accelerate: float = 0.1
 
@@ -18,6 +19,7 @@ func _physics_process(delta):
 	else:
 		jump_left = 2
 
+
 	# Handle jump.
 	if Input.is_action_just_pressed("Space") and is_on_floor():
 		velocity.y = jump_velocity
@@ -25,7 +27,11 @@ func _physics_process(delta):
 	elif Input.is_action_just_pressed("Space") and jump_left > 0:
 		velocity.y = jump_velocity
 		jump_left -= 1
-
+	
+	if Input.is_action_just_released("Space") and velocity.y < 0:
+		velocity.y *= jump_deccelerate
+	
+	#Handle Running
 	var speed:int = 0
 	if Input.is_action_pressed("Run"):
 		speed = run_speed

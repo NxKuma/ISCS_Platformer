@@ -9,6 +9,7 @@
 platform_floor_layers = 4294901761
 script = ExtResource("1_vpxau")
 run_speed = 700
+jump_velocity = -800.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_6xw8v")
