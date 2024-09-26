@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://8ant17f7e4a3"]
+[gd_scene load_steps=6 format=3 uid="uid://8ant17f7e4a3"]
 
 [ext_resource type="Texture2D" uid="uid://5oontj5cffwx" path="res://icon.svg" id="1_fdxyj"]
 [ext_resource type="PackedScene" uid="uid://clrutr0or0pac" path="res://Scene/Character.tscn" id="1_vs660"]
+[ext_resource type="PackedScene" uid="uid://bwuvwpnvlh852" path="res://Scene/debug_layer.tscn" id="1_xi5u4"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_mkhhk"]
 
@@ -9,6 +10,8 @@
 size = Vector2(113.691, 221.962)
 
 [node name="Main" type="Node2D"]
+
+[node name="DebugLayer" parent="." instance=ExtResource("1_xi5u4")]
 
 [node name="Icon" type="Sprite2D" parent="."]
 position = Vector2(587, 809.5)

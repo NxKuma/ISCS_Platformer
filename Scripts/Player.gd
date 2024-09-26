@@ -2,23 +2,23 @@ extends CharacterBody2D
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
+var jump_left: int = 2
+
+@onready var debug: CanvasLayer = $"../DebugLayer"
 
 @export var walk_speed: int = 350
 @export var run_speed: int = 500
 @export var jump_velocity: float = -600.0
+
 @export_range(1,2) var gravity_level: float = 1
 @export_range(0,1) var jump_deccelerate: float = 0.5
 @export_range(0,1) var deccelerate: float = 0.1
 @export_range(0,1) var accelerate: float = 0.1
 
-var jump_left: int = 2
-
 func _ready():
 	gravity *= gravity_level
 
 func _physics_process(delta):
-	
-	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
@@ -63,10 +63,16 @@ func _physics_process(delta):
 	elif Input.is_action_pressed("Right"):
 		if velocity.x < speed_limit:
 			velocity.x += direction * speed *accelerate
-
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed*deccelerate)
 		
-	#print(velocity.x)
-	print(jump_velocity)
 	move_and_slide()
+	
+#-----------------------------------------------------------------------------------------------
+	#var label:RichTextLabel = debug.get_child(0).get_child(0).get_child(0)
+	#label.set_text("Velocity X: " + str(snappedf(velocity.x,0.01)) + "\nDirection: " + str(direction))
+	
+func _input(event):
+	var label:RichTextLabel = debug.get_child(0).get_child(0).get_child(0)
+	var direction = Input.get_axis("Left", "Right")
+	label.set_text("Velocity X: " + str(snappedf(velocity.x,0.01)) + "\nDirection: " + str(direction) + "\nInput: " + event.as_text())
