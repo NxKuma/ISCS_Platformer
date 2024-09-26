@@ -3,28 +3,31 @@
 [ext_resource type="Texture2D" uid="uid://5oontj5cffwx" path="res://icon.svg" id="1_6xw8v"]
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_vpxau"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r356s"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uqchl"]
+size = Vector2(20.1499, 29.4743)
 
 [node name="Player" type="CharacterBody2D"]
 platform_floor_layers = 4294901761
 platform_wall_layers = 32
 script = ExtResource("1_vpxau")
-run_speed = 700
-jump_velocity = -800.0
+walk_speed = 120
+run_speed = 40
+jump_velocity = -650.0
+gravity_level = 1.065
+deccelerate = 0.08
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_6xw8v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.499998, 1.90735e-06)
 scale = Vector2(6.2035, 4.20706)
-shape = SubResource("CapsuleShape2D_r356s")
+shape = SubResource("RectangleShape2D_uqchl")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_speed = 300.0
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
-drag_left_margin = 0.35
-drag_right_margin = 0.35
 drag_bottom_margin = 0.5
 editor_draw_limits = true
 editor_draw_drag_margin = true

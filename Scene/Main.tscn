@@ -20,6 +20,18 @@ position = Vector2(88.6751, 25.3023)
 scale = Vector2(0.589419, 3.05546)
 texture = ExtResource("1_fdxyj")
 
+[node name="Icon2" type="Sprite2D" parent="Icon"]
+modulate = Color(0.239216, 1, 0.2, 1)
+position = Vector2(-66.7887, -123.306)
+scale = Vector2(0.466758, 0.17906)
+texture = ExtResource("1_fdxyj")
+
+[node name="Icon3" type="Sprite2D" parent="Icon"]
+modulate = Color(1, 0.0705882, 0.0705882, 1)
+position = Vector2(-76.1788, -192.916)
+scale = Vector2(0.466758, 0.17906)
+texture = ExtResource("1_fdxyj")
+
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(593, 530)
 collision_layer = 33
@@ -32,6 +44,17 @@ shape = SubResource("WorldBoundaryShape2D_mkhhk")
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(2478, 366)
 scale = Vector2(18.2996, 7.52492)
+shape = SubResource("RectangleShape2D_brri7")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-1887, -266)
+scale = Vector2(14.7036, 0.36414)
+shape = SubResource("RectangleShape2D_brri7")
+one_way_collision = true
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-2172, -566)
+scale = Vector2(14.7036, 0.36414)
 shape = SubResource("RectangleShape2D_brri7")
 
 [node name="Player" parent="." instance=ExtResource("1_vs660")]
