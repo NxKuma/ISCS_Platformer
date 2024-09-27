@@ -10,5 +10,5 @@ func _input(event):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	debug_string = "Velocity X: " + str(snappedf(player.velocity.x,0.01)) + "\nVelocity Y: " + str(snappedf(player.velocity.y,0.01)) +  "\nAcceleration: " + str(player.accelerate) + "\nGravity: " + str(player.gravity) + "\nDirection: " + str(player.direction) + "\nInput: " + input_string
+	debug_string = "Velocity X: " + str(snappedf(player.velocity.x,0.01)) + "\nVelocity Y: " + str(snappedf(player.velocity.y,0.01)) + "\nJump Left: " + str(snappedf(player.jump_left,0.01)) + "\nAcceleration: " + str(player.accelerate) + "\nGravity: " + str(player.gravity) + "\nDirection: " + str(player.direction) + "\nInput: " + input_string
 	label.set_text(debug_string)

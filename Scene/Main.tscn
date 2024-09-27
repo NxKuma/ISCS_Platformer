@@ -1,15 +1,21 @@
-[gd_scene load_steps=6 format=3 uid="uid://8ant17f7e4a3"]
+[gd_scene load_steps=7 format=3 uid="uid://8ant17f7e4a3"]
 
 [ext_resource type="Texture2D" uid="uid://5oontj5cffwx" path="res://icon.svg" id="1_fdxyj"]
+[ext_resource type="Texture2D" uid="uid://c6odb5jbbt4sp" path="res://Art/Sample Pic.png" id="1_tjqjc"]
 [ext_resource type="PackedScene" uid="uid://clrutr0or0pac" path="res://Scene/Character.tscn" id="1_vs660"]
 [ext_resource type="PackedScene" uid="uid://bwuvwpnvlh852" path="res://Scene/debug_layer.tscn" id="1_xi5u4"]
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_mkhhk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_brri7"]
 size = Vector2(113.691, 221.962)
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_mkhhk"]
+
 [node name="Main" type="Node2D"]
+
+[node name="SamplePic" type="Sprite2D" parent="."]
+position = Vector2(551, -122)
+scale = Vector2(11.7609, 4.25632)
+texture = ExtResource("1_tjqjc")
 
 [node name="DebugLayer" parent="." instance=ExtResource("1_xi5u4")]
 
@@ -35,30 +41,48 @@ position = Vector2(-76.1788, -192.916)
 scale = Vector2(0.466758, 0.17906)
 texture = ExtResource("1_fdxyj")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="Icon4" type="Sprite2D" parent="Icon"]
+modulate = Color(1, 0.964706, 0, 1)
+position = Vector2(46.7027, -79.3416)
+scale = Vector2(0.0671964, 0.25005)
+texture = ExtResource("1_fdxyj")
+
+[node name="Mushroom" type="StaticBody2D" parent="."]
+position = Vector2(-1294, 264)
+scale = Vector2(14.7036, 0.36414)
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Mushroom"]
+position = Vector2(217.498, 565.716)
+scale = Vector2(0.144644, 1.2285)
+shape = SubResource("RectangleShape2D_brri7")
+debug_color = Color(0.670588, 0.509804, 0, 0.419608)
+
+[node name="Floor" type="StaticBody2D" parent="."]
 position = Vector2(593, 530)
 collision_layer = 33
 collision_mask = 33
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
 scale = Vector2(18.0277, 1.37588)
 shape = SubResource("WorldBoundaryShape2D_mkhhk")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Floor"]
 position = Vector2(2478, 366)
 scale = Vector2(18.2996, 7.52492)
 shape = SubResource("RectangleShape2D_brri7")
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Floor"]
 position = Vector2(-1887, -266)
 scale = Vector2(14.7036, 0.36414)
 shape = SubResource("RectangleShape2D_brri7")
 one_way_collision = true
+debug_color = Color(0.192157, 0.643137, 0, 0.419608)
 
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Floor"]
 position = Vector2(-2172, -566)
 scale = Vector2(14.7036, 0.36414)
 shape = SubResource("RectangleShape2D_brri7")
+debug_color = Color(0.976471, 0.109804, 0.282353, 0.419608)
 
 [node name="Player" parent="." instance=ExtResource("1_vs660")]
 position = Vector2(595, 256)
