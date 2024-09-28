@@ -3,10 +3,12 @@ extends CharacterBody2D
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 var jump_left: int = 2
-var direction: int
+var direction: int = 1
+var speed_limit: int = 560
 #-----------------------------------------------------------------------------------------------
 @onready var debug: CanvasLayer = $"../DebugLayer"
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 #-----------------------------------------------------------------------------------------------
 @export var walk_speed: int = 350
 @export var run_speed: int = 500
@@ -21,6 +23,7 @@ func _ready():
 	gravity *= gravity_level
 
 func _physics_process(delta):
+	animation()
 #-----------------------------------------------------------------------------------------------
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
@@ -50,7 +53,7 @@ func _physics_process(delta):
 #-----------------------------------------------------------------------------------------------
 	#Handle Running
 	var speed:int
-	var speed_limit:int
+	
 	if Input.is_action_pressed("Run"):
 		speed = run_speed
 		speed_limit = 800
@@ -72,13 +75,16 @@ func _physics_process(delta):
 	if Input.is_action_pressed("Left"):
 		if velocity.x > -speed_limit:
 			velocity.x += direction * speed *accelerate
+		else:
+			velocity.x = -speed_limit
 	elif Input.is_action_pressed("Right"):
 		if velocity.x < speed_limit:
 			velocity.x += direction * speed *accelerate
+		else:
+			velocity.x = speed_limit
 	else:
 		if is_on_floor():
 			velocity.x = move_toward(velocity.x, 0, speed*deccelerate)
-		
 	move_and_slide()
 	
 #-----------------------------------------------------------------------------------------------
@@ -86,3 +92,22 @@ func _physics_process(delta):
 func _input(event: InputEvent):
 	if event.is_action_pressed("Down") and is_on_floor_only():
 		position.y += 1
+
+func animation():
+	if direction == 1:
+		sprite.set_flip_h(0)
+	elif direction == -1:
+		sprite.set_flip_h(1)
+	
+	if not is_on_floor():
+		if velocity.y < 0:
+			sprite.play("Jump")
+		elif velocity.y > 0:
+			sprite.play("Fall")
+	elif is_on_floor():
+		if velocity.x == 0:
+			sprite.play("Idle")
+		elif velocity.x != 0 and ((velocity.x < speed_limit and direction == 1) or (velocity.x > -speed_limit and direction == -1)):
+			sprite.play("Walk")
+		elif (velocity.x == speed_limit and direction == 1) or (velocity.x == -speed_limit and direction == -1):
+			sprite.play("Run")
