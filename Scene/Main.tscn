@@ -1,13 +1,14 @@
-[gd_scene load_steps=11 format=3 uid="uid://8ant17f7e4a3"]
+[gd_scene load_steps=12 format=3 uid="uid://8ant17f7e4a3"]
 
 [ext_resource type="Texture2D" uid="uid://5oontj5cffwx" path="res://icon.svg" id="1_fdxyj"]
 [ext_resource type="Texture2D" uid="uid://c6odb5jbbt4sp" path="res://Art/Sample Pic.png" id="1_tjqjc"]
 [ext_resource type="PackedScene" uid="uid://clrutr0or0pac" path="res://Scene/Character.tscn" id="1_vs660"]
 [ext_resource type="PackedScene" uid="uid://bwuvwpnvlh852" path="res://Scene/debug_layer.tscn" id="1_xi5u4"]
 [ext_resource type="PackedScene" uid="uid://ct75a7w4ehylb" path="res://Scene/MovingPlatform.tscn" id="5_l62ef"]
+[ext_resource type="PackedScene" uid="uid://bhvx4oll8etqx" path="res://Scene/DisappearingPlatform.tscn" id="6_vcwwe"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_brri7"]
-size = Vector2(113.691, 221.962)
+size = Vector2(116.956, 221.962)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_mkhhk"]
 
@@ -53,8 +54,8 @@ _data = {
 [node name="Main" type="Node2D"]
 
 [node name="SamplePic" type="Sprite2D" parent="."]
-position = Vector2(551, -122)
-scale = Vector2(11.7609, 4.25632)
+position = Vector2(566, -915)
+scale = Vector2(22.7861, 11.9334)
 texture = ExtResource("1_tjqjc")
 
 [node name="DebugLayer" parent="." instance=ExtResource("1_xi5u4")]
@@ -107,7 +108,7 @@ scale = Vector2(18.0277, 1.37588)
 shape = SubResource("WorldBoundaryShape2D_mkhhk")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Floor"]
-position = Vector2(2478, 366)
+position = Vector2(2507.88, 366)
 scale = Vector2(18.2996, 7.52492)
 shape = SubResource("RectangleShape2D_brri7")
 
@@ -136,5 +137,8 @@ libraries = {
 "": SubResource("AnimationLibrary_jwsmg")
 }
 autoplay = "PlatformPath"
+
+[node name="DisappearingPlatform" parent="." instance=ExtResource("6_vcwwe")]
+position = Vector2(1459, 171)
 
 [editable path="MovingPlatform"]
