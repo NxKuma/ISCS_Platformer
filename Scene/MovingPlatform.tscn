@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://ct75a7w4ehylb"]
+
+[ext_resource type="Texture2D" uid="uid://5oontj5cffwx" path="res://icon.svg" id="1_lxsj4"]
+
+[node name="MovingPlatform" type="AnimatableBody2D"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+modulate = Color(0.243137, 0.25098, 0.121569, 1)
+polygon = PackedVector2Array(-52, -21, 52, -21, 64, -17, 64, 17, 56, 20, -56, 20, -64, 17, -64, -17)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.781127, 0.560674, 0.153251, 1)
+position = Vector2(0, 3.8147e-06)
+scale = Vector2(1, 0.320313)
+texture = ExtResource("1_lxsj4")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
