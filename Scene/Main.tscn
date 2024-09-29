@@ -1,24 +1,67 @@
-[gd_scene load_steps=8 format=3 uid="uid://8ant17f7e4a3"]
+[gd_scene load_steps=12 format=3 uid="uid://8ant17f7e4a3"]
 
 [ext_resource type="PackedScene" uid="uid://bhquunprtguad" path="res://Scene/ParallaxLayer.tscn" id="1_8rif8"]
 [ext_resource type="Texture2D" uid="uid://5oontj5cffwx" path="res://icon.svg" id="1_fdxyj"]
 [ext_resource type="Texture2D" uid="uid://c6odb5jbbt4sp" path="res://Art/Sample Pic.png" id="1_tjqjc"]
 [ext_resource type="PackedScene" uid="uid://clrutr0or0pac" path="res://Scene/Character.tscn" id="1_vs660"]
 [ext_resource type="PackedScene" uid="uid://bwuvwpnvlh852" path="res://Scene/debug_layer.tscn" id="1_xi5u4"]
+[ext_resource type="PackedScene" uid="uid://ct75a7w4ehylb" path="res://Scene/MovingPlatform.tscn" id="5_l62ef"]
+[ext_resource type="PackedScene" uid="uid://bhvx4oll8etqx" path="res://Scene/DisappearingPlatform.tscn" id="6_vcwwe"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_brri7"]
-size = Vector2(113.691, 221.962)
+size = Vector2(116.956, 221.962)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_mkhhk"]
+
+[sub_resource type="Animation" id="Animation_ni6rf"]
+resource_name = "PlatformPath"
+length = 10.0
+loop_mode = 1
+step = 0.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3, 5, 8, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1088, 437), Vector2(1088, 169), Vector2(1088, 169), Vector2(1088, 437), Vector2(1088, 437)]
+}
+
+[sub_resource type="Animation" id="Animation_tdok4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1088, 437)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jwsmg"]
+_data = {
+"PlatformPath": SubResource("Animation_ni6rf"),
+"RESET": SubResource("Animation_tdok4")
+}
 
 [node name="Main" type="Node2D"]
 
 [node name="Control" parent="." instance=ExtResource("1_8rif8")]
 
 [node name="SamplePic" type="Sprite2D" parent="."]
+
 visible = false
 position = Vector2(551, -122)
 scale = Vector2(11.7609, 4.25632)
+
 texture = ExtResource("1_tjqjc")
 
 [node name="DebugLayer" parent="." instance=ExtResource("1_xi5u4")]
@@ -71,7 +114,7 @@ scale = Vector2(18.0277, 1.37588)
 shape = SubResource("WorldBoundaryShape2D_mkhhk")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Floor"]
-position = Vector2(2478, 366)
+position = Vector2(2507.88, 366)
 scale = Vector2(18.2996, 7.52492)
 shape = SubResource("RectangleShape2D_brri7")
 
@@ -89,4 +132,20 @@ shape = SubResource("RectangleShape2D_brri7")
 debug_color = Color(0.976471, 0.109804, 0.282353, 0.419608)
 
 [node name="Player" parent="." instance=ExtResource("1_vs660")]
-position = Vector2(478, -511)
+
+position = Vector2(595, 256)
+
+[node name="MovingPlatform" parent="." instance=ExtResource("5_l62ef")]
+position = Vector2(1088, 437)
+metadata/_edit_group_ = true
+
+[node name="AnimationPlayer" parent="MovingPlatform" index="2"]
+libraries = {
+"": SubResource("AnimationLibrary_jwsmg")
+}
+autoplay = "PlatformPath"
+
+[node name="DisappearingPlatform" parent="." instance=ExtResource("6_vcwwe")]
+position = Vector2(1459, 171)
+
+[editable path="MovingPlatform"]

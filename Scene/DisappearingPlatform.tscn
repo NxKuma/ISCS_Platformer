@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://bhvx4oll8etqx"]
+
+[ext_resource type="Script" path="res://Scripts/DisappearingPlatform.gd" id="1_elee7"]
+[ext_resource type="Texture2D" uid="uid://5oontj5cffwx" path="res://icon.svg" id="1_yio8w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1nuh1"]
+size = Vector2(495, 72)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bcgqw"]
+size = Vector2(495, 18)
+
+[node name="DisappearingPlatform" type="StaticBody2D"]
+script = ExtResource("1_elee7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(7.62939e-06, -5.72205e-06)
+scale = Vector2(3.87109, 0.570313)
+texture = ExtResource("1_yio8w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_1nuh1")
+one_way_collision = true
+debug_color = Color(0.680425, 0.683463, 0.72991, 0.42)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0.5, -36)
+shape = SubResource("RectangleShape2D_bcgqw")
+debug_color = Color(0.966221, 0.569821, 0.639321, 0.239216)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

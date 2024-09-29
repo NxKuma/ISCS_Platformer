@@ -10,12 +10,12 @@ var speed_limit: int = 560
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 #-----------------------------------------------------------------------------------------------
-@export var walk_speed: int = 350
-@export var run_speed: int = 500
-@export var jump_velocity: float = -600.0
+@export var walk_speed: int = 50
+@export var run_speed: int = 200
+@export var jump_velocity: float = -10.0
 #-----------------------------------------------------------------------------------------------
-@export_range(1,8) var gravity_level: float = 1
-@export_range(0,1) var jump_deccelerate: float = 0.5
+#@export_range(1,8) var gravity_level: float = 1
+@export_range(0,1) var jump_deccelerate: float = 0.1
 @export_range(0,1) var deccelerate: float = 0.1
 @export_range(0,1) var accelerate: float = 0.1
 
@@ -36,12 +36,12 @@ func _physics_process(delta):
 		if velocity.y <= 0:
 			velocity.y += gravity * delta
 		else:
-			velocity.y += gravity * delta * 2
+			velocity.y += gravity * delta * 0.7
 	else:
 		jump_left = 2
 #-----------------------------------------------------------------------------------------------
 	# Handle jump.
-	if Input.is_action_just_pressed("Space") and (is_on_floor() or is_on_wall()):
+	if Input.is_action_just_pressed("Space") and (is_on_floor()):
 		velocity.y = jump_velocity
 		jump_left -= 1
 	elif Input.is_action_just_pressed("Space") and jump_left > 0:
@@ -56,10 +56,10 @@ func _physics_process(delta):
 	
 	if Input.is_action_pressed("Run"):
 		speed = run_speed
-		speed_limit = 800
+		speed_limit = 500
 	else:
 		speed = walk_speed
-		speed_limit = 560
+		speed_limit = 250
 
 	# Get the input direction and handle the movement/deceleration.
 	direction = Input.get_axis("Left", "Right")
