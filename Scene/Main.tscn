@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://8ant17f7e4a3"]
+[gd_scene load_steps=8 format=3 uid="uid://8ant17f7e4a3"]
 
+[ext_resource type="PackedScene" uid="uid://bhquunprtguad" path="res://Scene/ParallaxLayer.tscn" id="1_8rif8"]
 [ext_resource type="Texture2D" uid="uid://5oontj5cffwx" path="res://icon.svg" id="1_fdxyj"]
 [ext_resource type="Texture2D" uid="uid://c6odb5jbbt4sp" path="res://Art/Sample Pic.png" id="1_tjqjc"]
 [ext_resource type="PackedScene" uid="uid://clrutr0or0pac" path="res://Scene/Character.tscn" id="1_vs660"]
@@ -12,7 +13,10 @@ size = Vector2(113.691, 221.962)
 
 [node name="Main" type="Node2D"]
 
+[node name="Control" parent="." instance=ExtResource("1_8rif8")]
+
 [node name="SamplePic" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(551, -122)
 scale = Vector2(11.7609, 4.25632)
 texture = ExtResource("1_tjqjc")
@@ -20,7 +24,7 @@ texture = ExtResource("1_tjqjc")
 [node name="DebugLayer" parent="." instance=ExtResource("1_xi5u4")]
 
 [node name="Icon" type="Sprite2D" parent="."]
-position = Vector2(587, 809.5)
+position = Vector2(587, 0)
 scale = Vector2(28.3281, 4.36719)
 texture = ExtResource("1_fdxyj")
 
@@ -48,7 +52,7 @@ scale = Vector2(0.0671964, 0.25005)
 texture = ExtResource("1_fdxyj")
 
 [node name="Mushroom" type="StaticBody2D" parent="."]
-position = Vector2(-1294, 264)
+position = Vector2(-1298, -548)
 scale = Vector2(14.7036, 0.36414)
 
 [node name="CollisionShape2D5" type="CollisionShape2D" parent="Mushroom"]
@@ -58,7 +62,7 @@ shape = SubResource("RectangleShape2D_brri7")
 debug_color = Color(0.670588, 0.509804, 0, 0.419608)
 
 [node name="Floor" type="StaticBody2D" parent="."]
-position = Vector2(593, 530)
+position = Vector2(593, -276)
 collision_layer = 33
 collision_mask = 33
 
@@ -85,4 +89,4 @@ shape = SubResource("RectangleShape2D_brri7")
 debug_color = Color(0.976471, 0.109804, 0.282353, 0.419608)
 
 [node name="Player" parent="." instance=ExtResource("1_vs660")]
-position = Vector2(595, 256)
+position = Vector2(478, -511)
