@@ -1,9 +1,86 @@
-[gd_scene load_steps=2 format=3 uid="uid://c42r6jp5xvsaa"]
+[gd_scene load_steps=12 format=3 uid="uid://c42r6jp5xvsaa"]
+
+[ext_resource type="Texture2D" uid="uid://deshsvey2ek73" path="res://Art/Mushroom.png" id="1_oc2x7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nf21y"]
+size = Vector2(15, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_61ldm"]
+atlas = ExtResource("1_oc2x7")
+region = Rect2(0, 16, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dxuln"]
+atlas = ExtResource("1_oc2x7")
+region = Rect2(32, 16, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_muq0f"]
+atlas = ExtResource("1_oc2x7")
+region = Rect2(64, 16, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fcjx0"]
+atlas = ExtResource("1_oc2x7")
+region = Rect2(96, 16, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_05l8p"]
+atlas = ExtResource("1_oc2x7")
+region = Rect2(0, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xuwnd"]
+atlas = ExtResource("1_oc2x7")
+region = Rect2(32, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_okwyl"]
+atlas = ExtResource("1_oc2x7")
+region = Rect2(64, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ns6ue"]
+atlas = ExtResource("1_oc2x7")
+region = Rect2(96, 0, 32, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qrhd4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_61ldm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dxuln")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_muq0f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fcjx0")
+}],
+"loop": true,
+"name": &"BounceL",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_05l8p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xuwnd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_okwyl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ns6ue")
+}],
+"loop": true,
+"name": &"BounceR",
+"speed": 5.0
+}]
 
 [node name="Mushroom" type="StaticBody2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(7.5, 1)
 shape = SubResource("RectangleShape2D_nf21y")
 debug_color = Color(0.796078, 0.588235, 0, 0.419608)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_qrhd4")
+animation = &"BounceL"
