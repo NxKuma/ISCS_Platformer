@@ -19,8 +19,8 @@ var speed_limit: int = 560
 @export_range(0,1) var deccelerate: float = 0.1
 @export_range(0,1) var accelerate: float = 0.1
 
-func _ready():
-	gravity *= gravity_level
+#func _ready():
+	#gravity *= gravity_level
 
 func _physics_process(delta):
 	animation()
@@ -62,14 +62,7 @@ func _physics_process(delta):
 		speed_limit = 560
 
 	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
 	direction = Input.get_axis("Left", "Right")
-	#Non-Preserved Momentum
-	#if direction:
-		#velocity.x = move_toward(velocity.x, direction * speed, speed * accelerate)
-		##velocity.x = direction * speed
-	#else:
-		#velocity.x = move_toward(velocity.x, 0, speed*deccelerate)
 #-----------------------------------------------------------------------------------------------
 	#Preserved Momentum
 	if Input.is_action_pressed("Left"):
@@ -107,6 +100,14 @@ func animation():
 	elif is_on_floor():
 		if velocity.x == 0:
 			sprite.play("Idle")
+		elif (direction == -1 and velocity.x > 0) or (direction == 1 and velocity.x < 0):
+			sprite.play("Stop")
+			if direction == -1:
+				sprite.set_flip_h(0)
+			else:
+				sprite.set_flip_h(1)
+		elif (Input.is_action_just_released("Left") or Input.is_action_just_released("Right")) and (velocity.x == speed_limit or velocity.x == -speed_limit):
+			sprite.play("Stop")
 		elif velocity.x != 0 and ((velocity.x < speed_limit and direction == 1) or (velocity.x > -speed_limit and direction == -1)):
 			sprite.play("Walk")
 		elif (velocity.x == speed_limit and direction == 1) or (velocity.x == -speed_limit and direction == -1):
