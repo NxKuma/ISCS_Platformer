@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://brqvtsyur2nse"
+path="res://.godot/imported/Boing - Sound Effect.mp3-fd86e9d3817d734975501b75edfa4760.mp3str"
+
+[deps]
+
+source_file="res://Audio/Boing - Sound Effect.mp3"
+dest_files=["res://.godot/imported/Boing - Sound Effect.mp3-fd86e9d3817d734975501b75edfa4760.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://c6odb5jbbt4sp" path="res://Art/Sample Pic.png" id="1_tjqjc"]
 [ext_resource type="PackedScene" uid="uid://clrutr0or0pac" path="res://Scene/Character.tscn" id="1_vs660"]
 [ext_resource type="PackedScene" uid="uid://bwuvwpnvlh852" path="res://Scene/debug_layer.tscn" id="1_xi5u4"]
-[ext_resource type="PackedScene" path="res://Scene/MovingPlatform.tscn" id="5_l62ef"]
+[ext_resource type="PackedScene" uid="uid://ct75a7w4ehylb" path="res://Scene/MovingPlatform.tscn" id="5_l62ef"]
 [ext_resource type="PackedScene" uid="uid://kd1h0we6akwc" path="res://Scene/DisappearingPlatform.tscn" id="6_vcwwe"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_brri7"]

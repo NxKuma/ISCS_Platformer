@@ -1,8 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://clrutr0or0pac"]
+[gd_scene load_steps=20 format=3 uid="uid://clrutr0or0pac"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_vpxau"]
 [ext_resource type="Texture2D" uid="uid://dsjj4gu56dnec" path="res://Art/Harold_Death.png" id="3_jgrtn"]
 [ext_resource type="Texture2D" uid="uid://ngdyf527tarc" path="res://Art/Harold_Sprit-Sheet.png" id="3_x4a8h"]
+[ext_resource type="AudioStream" uid="uid://brqvtsyur2nse" path="res://Audio/Boing - Sound Effect.mp3" id="4_rcbj8"]
+[ext_resource type="AudioStream" uid="uid://djkxh48c7ba2s" path="res://Audio/Splash Sound Effect.mp3" id="5_fs00d"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iv6sy"]
 atlas = ExtResource("3_x4a8h")
@@ -135,14 +137,15 @@ angular_velocity_min = -372.14
 angular_velocity_max = 339.78
 gravity = Vector3(0, 50, 0)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 platform_floor_layers = 4294901761
 platform_wall_layers = 32
 script = ExtResource("1_vpxau")
 walk_speed = 40
 run_speed = 40
 jump_velocity = -300.0
-deccelerate = 0.25
+deccelerate = 0.3
+accelerate = 0.3
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_l3l0t")
@@ -173,3 +176,10 @@ speed_scale = 1.5
 explosiveness = 1.0
 randomness = 1.0
 trail_lifetime = 0.8
+
+[node name="MushroomBounceSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_rcbj8")
+volume_db = -3.0
+
+[node name="WaterSplashSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_fs00d")

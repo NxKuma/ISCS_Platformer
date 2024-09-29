@@ -1,0 +1,64 @@
+[gd_scene load_steps=10 format=3 uid="uid://bwtb5dfgxq3ij"]
+
+[ext_resource type="Texture2D" uid="uid://cv48gdqtppxli" path="res://Art/hurryharoldportal.png" id="1_mlhcm"]
+[ext_resource type="Script" path="res://Scripts/Portal.gd" id="1_r03s8"]
+[ext_resource type="AudioStream" uid="uid://bnraouxtnot0" path="res://Audio/One Piece Fast MovementTeleportation (Rokushiki Soru) - Sound Effect for editing.mp3" id="3_vdjvv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n7aer"]
+atlas = ExtResource("1_mlhcm")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lrj4k"]
+atlas = ExtResource("1_mlhcm")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iuncj"]
+atlas = ExtResource("1_mlhcm")
+region = Rect2(32, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_30cv3"]
+atlas = ExtResource("1_mlhcm")
+region = Rect2(48, 0, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8okhp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n7aer")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lrj4k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iuncj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_30cv3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sm6rx"]
+size = Vector2(5.5, 12.5)
+
+[node name="Portal" type="Area2D" groups=["Portal"]]
+disable_mode = 2
+script = ExtResource("1_r03s8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_8okhp")
+frame_progress = 0.32253
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.75, 6.75)
+shape = SubResource("RectangleShape2D_sm6rx")
+
+[node name="DestinationPointer" type="Marker2D" parent="."]
+position = Vector2(13, 7)
+
+[node name="TeleportSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_vdjvv")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -11,6 +11,8 @@ var speed_limit: int = 200
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var death_screen = $"../DeathScreen"
 @onready var gpu_particles_2d = $GPUParticles2D
+@onready var mushroom_bounce_sfx: AudioStreamPlayer2D = $MushroomBounceSFX
+@onready var water_splash_sfx: AudioStreamPlayer2D = $WaterSplashSFX
 #-----------------------------------------------------------------------------------------------
 @export var walk_speed: int = 50
 @export var run_speed: int = 200
@@ -29,9 +31,11 @@ func _physics_process(delta):
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
 		if collision.get_collider().name.contains("Mushroom"):
+			mushroom_bounce_sfx.play()
 			velocity.y = jump_velocity * 1.5
 			jump_left = 1
 		elif collision.get_collider().name.contains("Water"):
+			water_splash_sfx.play()
 			collision_shape_2d.disabled = true
 			gpu_particles_2d.emitting = true
 			sprite.visible = false

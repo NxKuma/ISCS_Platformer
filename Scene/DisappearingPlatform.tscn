@@ -4,10 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://kjssc5rfj6e4" path="res://Art/Leaf.png" id="2_pigkr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1nuh1"]
-size = Vector2(495, 72)
+size = Vector2(22, 14)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bcgqw"]
-size = Vector2(495, 18)
+size = Vector2(20, 2.375)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4rfm7"]
 atlas = ExtResource("2_pigkr")
@@ -39,8 +39,14 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_hsato")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hsato")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4rfm7")
 }],
-"loop": true,
+"loop": false,
 "name": &"default",
 "speed": 5.0
 }]
@@ -49,7 +55,7 @@ animations = [{
 script = ExtResource("1_elee7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, 0)
+position = Vector2(-3, -7)
 shape = SubResource("RectangleShape2D_1nuh1")
 one_way_collision = true
 debug_color = Color(0.680425, 0.683463, 0.72991, 0.42)
@@ -57,12 +63,11 @@ debug_color = Color(0.680425, 0.683463, 0.72991, 0.42)
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0.5, -36)
+position = Vector2(-3.28125, -14.8125)
 shape = SubResource("RectangleShape2D_bcgqw")
 debug_color = Color(0.966221, 0.569821, 0.639321, 0.239216)
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.5
 one_shot = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

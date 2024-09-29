@@ -2,9 +2,6 @@
 
 [ext_resource type="Texture2D" uid="uid://deshsvey2ek73" path="res://Art/Mushroom.png" id="1_oc2x7"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nf21y"]
-size = Vector2(15, 14)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_61ldm"]
 atlas = ExtResource("1_oc2x7")
 region = Rect2(0, 16, 32, 16)
@@ -74,13 +71,16 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Mushroom" type="StaticBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nf21y"]
+size = Vector2(15, 4)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(7.5, 1)
-shape = SubResource("RectangleShape2D_nf21y")
-debug_color = Color(0.796078, 0.588235, 0, 0.419608)
+[node name="Mushroom" type="StaticBody2D"]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_qrhd4")
 animation = &"BounceL"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(7.5, -4)
+shape = SubResource("RectangleShape2D_nf21y")
+debug_color = Color(0.796078, 0.588235, 0, 0.419608)
