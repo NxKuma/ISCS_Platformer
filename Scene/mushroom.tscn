@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://c42r6jp5xvsaa"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nf21y"]
+
+[node name="Mushroom" type="StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_nf21y")
+debug_color = Color(0.796078, 0.588235, 0, 0.419608)

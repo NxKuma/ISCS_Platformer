@@ -1,6 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://clrutr0or0pac"]
+[gd_scene load_steps=18 format=3 uid="uid://clrutr0or0pac"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_vpxau"]
+[ext_resource type="Texture2D" uid="uid://dsjj4gu56dnec" path="res://Art/Harold_Death.png" id="3_jgrtn"]
 [ext_resource type="Texture2D" uid="uid://ngdyf527tarc" path="res://Art/Harold_Sprit-Sheet.png" id="3_x4a8h"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iv6sy"]
@@ -120,18 +121,28 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uqchl"]
-size = Vector2(16, 16)
+size = Vector2(16, 15)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2sri6"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(0, -10, 0)
+angle_min = 90.0
+angle_max = 90.0
+spread = 60.0
+initial_velocity_min = 1.0
+initial_velocity_max = 1.0
+angular_velocity_min = -372.14
+angular_velocity_max = 339.78
+gravity = Vector3(0, 50, 0)
 
 [node name="Player" type="CharacterBody2D"]
-scale = Vector2(8, 8)
 platform_floor_layers = 4294901761
 platform_wall_layers = 32
 script = ExtResource("1_vpxau")
-walk_speed = 120
+walk_speed = 40
 run_speed = 40
-jump_velocity = -350.0
-deccelerate = 0.7
-accelerate = 0.2
+jump_velocity = -300.0
+deccelerate = 0.25
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_l3l0t")
@@ -141,12 +152,24 @@ animation = &"Stop"
 shape = SubResource("RectangleShape2D_uqchl")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(0, -97)
+position = Vector2(0, -5)
 zoom = Vector2(5, 5)
 position_smoothing_speed = 300.0
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 drag_top_margin = 0.1
-drag_bottom_margin = 0.4
+drag_bottom_margin = 0.3
 editor_draw_limits = true
 editor_draw_drag_margin = true
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_2sri6")
+texture = ExtResource("3_jgrtn")
+lifetime = 2.0
+one_shot = true
+speed_scale = 1.5
+explosiveness = 1.0
+randomness = 1.0
+trail_lifetime = 0.8

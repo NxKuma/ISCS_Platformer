@@ -1,0 +1,61 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1h3jpxd42dx1"]
+
+[ext_resource type="Script" path="res://Scene/Death_Screen.gd" id="1_ab08j"]
+
+[node name="DeathScreen" type="CanvasLayer"]
+script = ExtResource("1_ab08j")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 0, 0, 0.0705882)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -275.0
+offset_top = -220.0
+offset_right = 265.0
+offset_bottom = 195.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 8
+mouse_filter = 2
+bbcode_enabled = true
+text = "[outline_size=30][outline_color=black][font_size=75][center][rainbow][tornado]YOU DED BOZO HAHA LMAO"
+fit_content = true
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -140.0
+offset_top = -193.0
+offset_right = 127.0
+offset_bottom = -121.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.937848, 0.922792)
+size_flags_horizontal = 3
+size_flags_vertical = 10
+mouse_filter = 2
+mouse_default_cursor_shape = 2
+
+[node name="Button" type="Button" parent="PanelContainer"]
+layout_mode = 2
+mouse_force_pass_scroll_events = false
+mouse_default_cursor_shape = 2
+text = "Wake Up Harold .."
+flat = true
+icon_alignment = 1
+
+[connection signal="pressed" from="PanelContainer/Button" to="." method="_on_button_pressed"]

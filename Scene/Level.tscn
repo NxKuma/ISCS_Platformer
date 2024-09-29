@@ -1,18 +1,23 @@
-[gd_scene load_steps=5 format=3 uid="uid://c71k3342lib3t"]
+[gd_scene load_steps=7 format=3 uid="uid://b3njknsnr3orm"]
 
-[ext_resource type="PackedScene" uid="uid://bwuvwpnvlh852" path="res://Scene/debug_layer.tscn" id="1_0vg26"]
-[ext_resource type="PackedScene" uid="uid://dtc1idcvdeoax" path="res://Scene/TileMap.tscn" id="1_jqa8c"]
+[ext_resource type="PackedScene" uid="uid://b1h3jpxd42dx1" path="res://Scene/Death_Screen.tscn" id="1_iaixl"]
+[ext_resource type="PackedScene" uid="uid://dvfvew0gslmof" path="res://Scene/TileMap.tscn" id="1_jqa8c"]
+[ext_resource type="PackedScene" uid="uid://bhquunprtguad" path="res://Scene/ParallaxLayer.tscn" id="1_m6yll"]
 [ext_resource type="PackedScene" uid="uid://clrutr0or0pac" path="res://Scene/Character.tscn" id="2_d74sx"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_a4v0b"]
 distance = -403.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j81qp"]
+
 [node name="Level" type="Node2D"]
 
-[node name="DebugLayer" parent="." instance=ExtResource("1_0vg26")]
+[node name="DeathScreen" parent="." instance=ExtResource("1_iaixl")]
+visible = false
+
+[node name="Parallax" parent="." instance=ExtResource("1_m6yll")]
 
 [node name="Player" parent="." instance=ExtResource("2_d74sx")]
-position = Vector2(-845, 352)
 
 [node name="TileMap" parent="." instance=ExtResource("1_jqa8c")]
 position = Vector2(-146, 414)
@@ -26,3 +31,10 @@ collision_mask = 33
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FloorBorder"]
 shape = SubResource("WorldBoundaryShape2D_a4v0b")
+
+[node name="Water" type="StaticBody2D" parent="."]
+position = Vector2(127, 387)
+scale = Vector2(6.14655, 1.21757)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Water"]
+shape = SubResource("RectangleShape2D_j81qp")
