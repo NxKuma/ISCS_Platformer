@@ -25,7 +25,6 @@ var speed_limit: int = 200
 func _physics_process(delta):
 	if !sprite.visible:
 		return
-		
 	animation()
 #-----------------------------------------------------------------------------------------------
 	for i in get_slide_collision_count():
@@ -63,21 +62,28 @@ func _physics_process(delta):
 #-----------------------------------------------------------------------------------------------
 	# Get the input direction and handle the movement/deceleration.
 	direction = Input.get_axis("Left", "Right")
+	
+	#Try
+	if direction:
+		velocity.x = move_toward(velocity.x, direction * speed_limit, walk_speed * accelerate)
+	else:
+		#if is_on_floor():
+		velocity.x = move_toward(velocity.x, 0, walk_speed*deccelerate)
 #-----------------------------------------------------------------------------------------------
 	#Preserved Momentum
-	if Input.is_action_pressed("Left"):
-		if velocity.x > -speed_limit:
-			velocity.x += direction * walk_speed *accelerate
-		else:
-			velocity.x = -speed_limit
-	elif Input.is_action_pressed("Right"):
-		if velocity.x < speed_limit:
-			velocity.x += direction * walk_speed *accelerate
-		else:
-			velocity.x = speed_limit
-	else:
-		if is_on_floor():
-			velocity.x = move_toward(velocity.x, 0, walk_speed*deccelerate)
+	#if Input.is_action_pressed("Left"):
+		#if velocity.x > -speed_limit:
+			#velocity.x += direction * walk_speed *accelerate
+		#else:
+			#velocity.x = -speed_limit
+	#elif Input.is_action_pressed("Right"):
+		#if velocity.x < speed_limit:
+			#velocity.x += direction * walk_speed *accelerate
+		#else:
+			#velocity.x = speed_limit
+	#else:
+		#if is_on_floor():
+			#velocity.x = move_toward(velocity.x, 0, walk_speed*deccelerate)
 	move_and_slide()
 #-----------------------------------------------------------------------------------------------
 func _input(event: InputEvent):

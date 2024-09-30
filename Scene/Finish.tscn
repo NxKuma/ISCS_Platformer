@@ -59,3 +59,5 @@ shape = SubResource("RectangleShape2D_xwluq")
 [node name="FrogSFX" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(-28, 14)
 stream = ExtResource("3_4rk4s")
+
+[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]

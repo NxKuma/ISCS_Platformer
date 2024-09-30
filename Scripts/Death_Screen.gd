@@ -7,4 +7,4 @@ func _on_button_pressed():
 	player.get_child(0).visible = true
 	player.velocity = Vector2.ZERO
 	player.get_child(1).disabled = false
-	player.position = Vector2.ZERO
+	player.position = Vector2(-137,376)
